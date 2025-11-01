@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Tonny 💖</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@400;600&display=swap');
+
+*{margin:0; padding:0; box-sizing:border-box;}
+body{
+  height:100vh; width:100vw; overflow:hidden;
+  font-family:'Montserrat', sans-serif;
+  background: radial-gradient(circle at top,#0b0b17,#1c1c34,#0d0d1a);
+  display:flex; justify-content:center; align-items:center;
+  position:relative; cursor:pointer;
+}
+
+/* Aurora background */
+body::before{
+  content:'';
+  position:absolute; top:0; left:0; width:100%; height:100%;
+  background: radial-gradient(circle, rgba(255,182,193,0.15), transparent 60%),
+              radial-gradient(circle, rgba(173,216,230,0.1), transparent 60%);
+  animation: aurora 30s linear infinite;
+  z-index:0;
+}
+@keyframes aurora{0%{transform:rotate(0deg);}50%{transform:rotate(180deg);}100%{transform:rotate(360deg);}}
+
+/* Card */
+.card{
+  position:relative; z-index:10;
+  width:90%; max-width:700px;
+  padding:40px; text-align:center;
+  background: rgba(30,30,50,0.7); backdrop-filter: blur(25px);
+  border-radius:30px;
+  box-shadow:0 0 200px rgba(255,182,193,0.7);
+  color:#fff; display:flex; flex-direction:column; align-items:center;
+  animation: cardEntrance 2s ease forwards, cardGlow 3s ease-in-out infinite alternate;
+}
+@keyframes cardEntrance{0%{opacity:0; transform:scale(0.7) rotate(-5deg);}100%{opacity:1; transform:scale(1) rotate(0);}}
+@keyframes cardGlow{0%{box-shadow:0 0 100px #ff69b4;}100%{box-shadow:0 0 180px #ff77aa;}}
+
+h1{font-family:'Great Vibes', cursive; font-size:2.5em; color:#FF69B4; margin-bottom:15px;
+text-shadow:0 0 15px #FF69B4,0 0 30px #ff77aa;}
+
+.profile-pic{
+  width:120px; height:120px; border-radius:50%; margin:20px auto; display:block;
+  border:4px solid #FF69B4; box-shadow:0 0 25px #FF69B4,0 0 50px #ff77aa; object-fit:cover;
+  animation: picBounce 2s infinite alternate; position:relative; z-index:1;
+}
+@keyframes picBounce{0%{transform:translateY(0);}100%{transform:translateY(-8px);}}
+
+.typewriter{
+  font-size:1.1em; color:#f0e6f6; display:inline-block; overflow:hidden;
+  border-right:.15em solid #FF69B4; white-space:pre-wrap; max-width:100%; margin:10px auto;
+  position:relative; z-index:1;
+}
+
+/* Floating Hearts / Loves */
+.floating-love{
+  position:absolute; font-size:2em; opacity:0.9;
+  animation: rise 6s linear forwards; pointer-events:none; z-index:5;
+}
+@keyframes rise{0%{transform:translateY(0) scale(0.7); opacity:0;}10%{opacity:1;}100%{transform:translateY(-600px) scale(1.2); opacity:0;}}
+
+/* Floating Cakes */
+.floating-cake{position:absolute; font-size:1.8em; opacity:0.9;
+animation: rise 6s linear forwards; pointer-events:none; z-index:5;}
+
+/* Sparkling Stars */
+.star{position:absolute; color:rgba(255,255,255,0.6); font-size:1em; animation: starTwinkle 3s infinite alternate;}
+@keyframes starTwinkle{0%{opacity:0.3;}50%{opacity:1;}100%{opacity:0.3;}}
+
+/* Responsive Mobile */
+@media(max-width:600px){
+  h1{font-size:2em;} 
+  .typewriter{font-size:1em;} 
+  .card{
+    width:95%; max-width:350px; padding:20px;
+  } 
+  .profile-pic{width:80px;height:80px;}
+}
+</style>
+</head>
+<body>
+
+<div class="card">
+  <h1>🌙✨ Happy Birthday, <span>Tonny</span> 🤍</h1>
+  <img src="555759675_835182799182759_5904861474514018854_n.jpg" class="profile-pic" alt="Tonny's Profile Picture">
+  <div class="typewriter" id="line1"></div>
+  <div class="typewriter" id="line2"></div>
+  <div class="typewriter" id="line3"></div>
+  <div class="typewriter" id="line4"></div>
+  <div class="typewriter" id="line5"></div>
+</div>
+
+<audio id="bgMusic" autoplay loop>
+  <source src="Saiyaara Reprise Female Saiyaara 320 Kbps.mp3" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>
+
+<script>
+// Typewriter text
+const lines = [
+  "Tonny, তুই শুধু আমার জীবনের মানুষ না—তুই আমার শান্তি, আমার comfort, আমার প্রাণের সুখ 🤍💖🌸💫",
+  "তোর হাসি সব ব্যথা মুছে দেয়, তোর কণ্ঠে বাজে শান্তির সুর, তুই আমার শান্তির ঠিকানা 🤍😊🌷✨💌",
+  "Wherever life takes us, my heart will always choose you, my dear wife 💕💍💖🌹💫 আমার চিরন্তন ভালোবাসা 🤍💘",
+  "I love you so much, my dear wife 😘💖💓🌸🥰 তুই আমার হাসি, আমার আনন্দ, আমার সবকিছু 🤍💞🌷✨",
+  "Happy Birthday again, my love 🎂🎉💖🥳✨🌹💌💫 my everything, forever and always 🤍💘🌸"
+];
+
+function typeLine(lineId,text,delay){
+  let i=0;
+  const el=document.getElementById(lineId);
+  function type(){ if(i<text.length){ el.innerHTML+=text.charAt(i); i++; setTimeout(type,40); } }
+  setTimeout(type,delay);
+}
+
+// Typewriter sequence
+typeLine("line1",lines[0],2000);
+typeLine("line2",lines[1],9000);
+typeLine("line3",lines[2],16000);
+typeLine("line4",lines[3],23000);
+typeLine("line5",lines[4],30000);
+
+// Floating hearts
+function createLove(){
+  const love=document.createElement('div');
+  love.className='floating-love';
+  love.innerText=['💖','❤️','💞','💕','💘','💝'][Math.floor(Math.random()*6)];
+  const card=document.querySelector('.card').getBoundingClientRect();
+  const side=Math.random()<0.5 ? card.left-50 : card.right-50;
+  love.style.left=side + 'px';
+  love.style.top=(card.top - 100 + Math.random()*50)+'px';
+  love.style.fontSize=(Math.random()*1+1)+'em';
+  document.body.appendChild(love);
+  setTimeout(()=>love.remove(),6000);
+}
+
+// Floating cakes near profile pic
+function createCake(){
+  const cake=document.createElement('div');
+  cake.className='floating-cake';
+  cake.innerText='🎂';
+  const pic=document.querySelector('.profile-pic').getBoundingClientRect();
+  cake.style.left=(pic.left + Math.random()*60 - 30)+'px';
+  cake.style.top=(pic.top + Math.random()*40 - 20)+'px';
+  document.body.appendChild(cake);
+  setTimeout(()=>cake.remove(),6000);
+}
+
+// Initial bursts
+for(let i=0;i<70;i++){ setTimeout(createLove,i*180); }
+for(let i=0;i<15;i++){ setTimeout(createCake,i*400); }
+
+// Stars
+function createStar(){
+  const star=document.createElement('div');
+  star.className='star';
+  star.innerText='✦';
+  star.style.left=Math.random()*100+'vw';
+  star.style.top=Math.random()*100+'vh';
+  star.style.fontSize=(Math.random()*1+0.5)+'em';
+  document.body.appendChild(star);
+}
+for(let i=0;i<70;i++){ createStar(); }
+
+// Mouse sparkle hearts
+document.addEventListener('mousemove',e=>{
+  const heart=document.createElement('div');
+  heart.className='floating-love';
+  heart.innerText=['💖','❤️','💞','💕'][Math.floor(Math.random()*4)];
+  heart.style.left=e.clientX+'px';
+  heart.style.top=e.clientY+'px';
+  heart.style.fontSize=(Math.random()*1+1)+'em';
+  document.body.appendChild(heart);
+  setTimeout(()=>heart.remove(),4000);
+});
+
+// Background music with volume modulation
+const music=document.getElementById('bgMusic');
+let volDir=0.01;
+setInterval(()=>{
+  if(music.volume>=1) volDir=-0.01;
+  if(music.volume<=0.3) volDir=0.01;
+  music.volume+=volDir;
+},100);
+document.body.addEventListener('dblclick',()=>{ music.paused?music.play():music.pause(); });
+
+</script>
+
+</body>
+</html>
